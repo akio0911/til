@@ -1,0 +1,21 @@
+-- Haskell Playground 1.0
+name
+name
+
+
+factorial 3
+
+-- zip ([1,2,3,4,5] (reverse [1,2,3,4,5]))
+
+div (sum $ zipWith (+) [1,2,3,4,5] (reverse [1,2,3,4,5])) 2
+
+zipWith (+) [1,2,3,4,5] (reverse [1,2,3,4,5])
+
+total [10,20,30]
+
+total2 [10,20,30]
+
+
+--factorial' 10
+
+factorial'' 10
