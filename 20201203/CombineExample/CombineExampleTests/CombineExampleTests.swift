@@ -9,6 +9,46 @@ import XCTest
 import Combine
 @testable import CombineExample
 
+class RetryTests: XCTestCase {
+    enum ExampleError: Error { case example }
+    
+    func testリトライによりエラーを流さない() {
+        let sink = expectation(description: "")
+        sink.expectedFulfillmentCount = 2
+        
+        let subscription = expectation(description: "")
+        subscription.expectedFulfillmentCount = 2
+        
+        var isFirstTry = true
+        
+        let _ = "A".publisher
+            .handleEvents(receiveSubscription: { aValue in
+                subscription.fulfill()
+            })
+            .tryMap { (arg: Character) -> Character in
+                if isFirstTry {
+                    isFirstTry = false
+                    throw ExampleError.example
+                }
+                return arg
+            }
+            .retry(1)
+            .sink(receiveCompletion: {
+                switch $0 {
+                case .finished:
+                    sink.fulfill()
+                case .failure:
+                    XCTFail("エラーが流れ異常終了してしまった")
+                }
+            }, receiveValue: {
+                XCTAssertEqual($0, "A")
+                sink.fulfill()
+            })
+            
+        wait(for: [sink, subscription], timeout: 0.01)
+    }
+}
+
 class TryMapTests: XCTestCase {
     enum ExampleError: Error { case example }
     
