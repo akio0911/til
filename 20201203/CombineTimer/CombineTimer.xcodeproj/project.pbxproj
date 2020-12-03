@@ -15,6 +15,7 @@
 		E5B8E1862578E930006D29AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B8E1842578E930006D29AA /* LaunchScreen.storyboard */; };
 		E5B8E1902578EBC0006D29AA /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E18F2578EBC0006D29AA /* TimerModel.swift */; };
 		E5B8E1932578EBE6006D29AA /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1922578EBE6006D29AA /* TimerViewModel.swift */; };
+		E5B8E1962578EE3E006D29AA /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1952578EE3E006D29AA /* Publisher+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E5B8E1872578E930006D29AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5B8E18F2578EBC0006D29AA /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		E5B8E1922578EBE6006D29AA /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		E5B8E1952578EE3E006D29AA /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				E5B8E17D2578E92F006D29AA /* TimerViewController.swift */,
 				E5B8E18F2578EBC0006D29AA /* TimerModel.swift */,
 				E5B8E1922578EBE6006D29AA /* TimerViewModel.swift */,
+				E5B8E1952578EE3E006D29AA /* Publisher+Extension.swift */,
 				E5B8E17F2578E92F006D29AA /* Main.storyboard */,
 				E5B8E1822578E930006D29AA /* Assets.xcassets */,
 				E5B8E1842578E930006D29AA /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				E5B8E17E2578E92F006D29AA /* TimerViewController.swift in Sources */,
 				E5B8E1902578EBC0006D29AA /* TimerModel.swift in Sources */,
 				E5B8E17A2578E92F006D29AA /* AppDelegate.swift in Sources */,
+				E5B8E1962578EE3E006D29AA /* Publisher+Extension.swift in Sources */,
 				E5B8E17C2578E92F006D29AA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
