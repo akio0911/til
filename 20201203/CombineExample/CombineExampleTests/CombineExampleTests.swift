@@ -9,6 +9,39 @@ import XCTest
 import Combine
 @testable import CombineExample
 
+class TryMapTests: XCTestCase {
+    enum ExampleError: Error { case example }
+    
+    func test() {
+        let sink = expectation(description: "")
+        sink.expectedFulfillmentCount = 1
+        
+        var temp: [Int] = []
+        
+        let _ = (1..<100).publisher
+            .tryMap({ (arg: Int) -> Int in
+                if arg == 3 {
+                    throw ExampleError.example
+                }
+                return arg
+            })
+            .sink(receiveCompletion: {
+                switch $0 {
+                case .finished:
+                    XCTFail("エラーが流れず正常終了してしまった")
+                case .failure(let error):
+                    XCTAssertEqual(error as? ExampleError, ExampleError.example)
+                    sink.fulfill()
+                }
+            }, receiveValue: {
+                temp.append($0)
+            })
+        
+        XCTAssertEqual(temp, [1, 2])
+        wait(for: [sink], timeout: 0.01)
+    }
+}
+
 class FailTests: XCTestCase {
 
     enum ExampleError: Error {
@@ -35,3 +68,4 @@ class FailTests: XCTestCase {
         wait(for: [sink], timeout: 0.01)
     }
 }
+
