@@ -9,6 +9,44 @@ import XCTest
 import Combine
 @testable import CombineExample
 
+class FailureTests: XCTestCase {
+    enum ExampleError: Error { case example }
+
+    func testSink() {
+        let exp = expectation(description: "")
+        exp.expectedFulfillmentCount = 2
+        
+        let _ = (1..<100).publisher
+            .flatMap({ arg -> AnyPublisher<Int, ExampleError> in
+                if arg == 2 {
+                    return Fail(
+                        outputType: Int.self,
+                        failure: ExampleError.example
+                    )
+                    .eraseToAnyPublisher()
+                } else {
+                    return Just(arg)
+                        .setFailureType(to: ExampleError.self)
+                        .eraseToAnyPublisher()
+                }
+            })
+            .sink(receiveCompletion: {
+                switch $0 {
+                case .finished:
+                    XCTFail("エラーが流れず正常終了してしまった")
+                case .failure(let error):
+                    XCTAssertEqual(error, ExampleError.example)
+                    exp.fulfill()
+                }
+            }, receiveValue: {
+                XCTAssertEqual($0, 1)
+                exp.fulfill()
+            })
+        
+        wait(for: [exp], timeout: 0.01)
+    }
+}
+
 class MapErrorTests: XCTestCase {
     enum ExampleError: Error { case example }
     enum OtherError: Error { case example }
