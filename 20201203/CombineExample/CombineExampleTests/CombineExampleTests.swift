@@ -17,6 +17,9 @@ class FailureTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         
         let _ = (1..<100).publisher
+            .handleEvents(receiveOutput: {
+                print("handleEventsA:", $0)
+            })
             .flatMap({ arg -> AnyPublisher<Int, ExampleError> in
                 if arg == 2 {
                     return Fail(
@@ -29,6 +32,9 @@ class FailureTests: XCTestCase {
                         .setFailureType(to: ExampleError.self)
                         .eraseToAnyPublisher()
                 }
+            })
+            .handleEvents(receiveOutput: {
+                print("handleEventsB:", $0)
             })
             .sink(receiveCompletion: {
                 switch $0 {
