@@ -4,5 +4,6 @@
         <page name='AnyCancellable'/>
         <page name='Untitled Page'/>
         <page name='FlatMapCancel'/>
+        <page name='StoreCancellables'/>
     </pages>
 </playground>
