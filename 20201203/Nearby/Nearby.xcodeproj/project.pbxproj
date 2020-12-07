@@ -14,6 +14,8 @@
 		E5B8E1B1257930D3006D29AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B8E1AF257930D3006D29AA /* LaunchScreen.storyboard */; };
 		E5B8E1BA25793101006D29AA /* PlaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */; };
 		E5B8E1BD257933E2006D29AA /* PlaceDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */; };
+		E5DA62EF257E6820009D8EAA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DA62EE257E6820009D8EAA /* HomeViewController.swift */; };
+		E5DA62F2257E682D009D8EAA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DA62F1257E682D009D8EAA /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E5B8E1B2257930D3006D29AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewModel.swift; sourceTree = "<group>"; };
 		E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailController.swift; sourceTree = "<group>"; };
+		E5DA62EE257E6820009D8EAA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E5DA62F1257E682D009D8EAA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				E5B8E1A6257930D2006D29AA /* SceneDelegate.swift */,
 				E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */,
 				E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */,
+				E5DA62EE257E6820009D8EAA /* HomeViewController.swift */,
+				E5DA62F1257E682D009D8EAA /* HomeViewModel.swift */,
 				E5B8E1AA257930D2006D29AA /* Main.storyboard */,
 				E5B8E1AD257930D3006D29AA /* Assets.xcassets */,
 				E5B8E1AF257930D3006D29AA /* LaunchScreen.storyboard */,
@@ -140,6 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DA62EF257E6820009D8EAA /* HomeViewController.swift in Sources */,
+				E5DA62F2257E682D009D8EAA /* HomeViewModel.swift in Sources */,
 				E5B8E1BA25793101006D29AA /* PlaceDetailViewModel.swift in Sources */,
 				E5B8E1A5257930D2006D29AA /* AppDelegate.swift in Sources */,
 				E5B8E1BD257933E2006D29AA /* PlaceDetailController.swift in Sources */,
