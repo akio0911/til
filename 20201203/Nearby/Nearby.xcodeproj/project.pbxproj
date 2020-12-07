@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		E5B8E1A5257930D2006D29AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1A4257930D2006D29AA /* AppDelegate.swift */; };
 		E5B8E1A7257930D2006D29AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1A6257930D2006D29AA /* SceneDelegate.swift */; };
-		E5B8E1A9257930D2006D29AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1A8257930D2006D29AA /* ViewController.swift */; };
 		E5B8E1AC257930D2006D29AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B8E1AA257930D2006D29AA /* Main.storyboard */; };
 		E5B8E1AE257930D3006D29AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5B8E1AD257930D3006D29AA /* Assets.xcassets */; };
 		E5B8E1B1257930D3006D29AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5B8E1AF257930D3006D29AA /* LaunchScreen.storyboard */; };
 		E5B8E1BA25793101006D29AA /* PlaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */; };
+		E5B8E1BD257933E2006D29AA /* PlaceDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E5B8E1A1257930D2006D29AA /* Nearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B8E1A4257930D2006D29AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B8E1A6257930D2006D29AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E5B8E1A8257930D2006D29AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E5B8E1AB257930D2006D29AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E5B8E1AD257930D3006D29AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5B8E1B0257930D3006D29AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5B8E1B2257930D3006D29AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewModel.swift; sourceTree = "<group>"; };
+		E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 			children = (
 				E5B8E1A4257930D2006D29AA /* AppDelegate.swift */,
 				E5B8E1A6257930D2006D29AA /* SceneDelegate.swift */,
-				E5B8E1A8257930D2006D29AA /* ViewController.swift */,
 				E5B8E1B925793101006D29AA /* PlaceDetailViewModel.swift */,
+				E5B8E1BC257933E2006D29AA /* PlaceDetailController.swift */,
 				E5B8E1AA257930D2006D29AA /* Main.storyboard */,
 				E5B8E1AD257930D3006D29AA /* Assets.xcassets */,
 				E5B8E1AF257930D3006D29AA /* LaunchScreen.storyboard */,
@@ -140,9 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5B8E1A9257930D2006D29AA /* ViewController.swift in Sources */,
 				E5B8E1BA25793101006D29AA /* PlaceDetailViewModel.swift in Sources */,
 				E5B8E1A5257930D2006D29AA /* AppDelegate.swift in Sources */,
+				E5B8E1BD257933E2006D29AA /* PlaceDetailController.swift in Sources */,
 				E5B8E1A7257930D2006D29AA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
