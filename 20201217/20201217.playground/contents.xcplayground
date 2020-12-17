@@ -23,5 +23,9 @@
         <page name='ignoreOutput'/>
         <page name='reduce'/>
         <page name='tryReduce'/>
+        <page name='count'/>
+        <page name='max'/>
+        <page name='maxBy'/>
+        <page name='tryMax'/>
     </pages>
 </playground>
