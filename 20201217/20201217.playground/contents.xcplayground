@@ -20,5 +20,8 @@
         <page name='collect'/>
         <page name='collectCount'/>
         <page name='collectStrategy'/>
+        <page name='ignoreOutput'/>
+        <page name='reduce'/>
+        <page name='tryReduce'/>
     </pages>
 </playground>
