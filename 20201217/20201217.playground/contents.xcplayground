@@ -27,5 +27,11 @@
         <page name='max'/>
         <page name='maxBy'/>
         <page name='tryMax'/>
+        <page name='min'/>
+        <page name='minBy'/>
+        <page name='tryMin'/>
+        <page name='contains'/>
+        <page name='containsWhere'/>
+        <page name='tryContainsWhere'/>
     </pages>
 </playground>
