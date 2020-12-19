@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E515B8E4258DE361004468CD /* TextEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515B8E3258DE361004468CD /* TextEditorTests.swift */; };
 		E5B838E6258DAE07002476DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B838E5258DAE07002476DF /* AppDelegate.swift */; };
 		E5B838E8258DAE07002476DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B838E7258DAE07002476DF /* SceneDelegate.swift */; };
 		E5B838EA258DAE07002476DF /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B838E9258DAE07002476DF /* EditorViewController.swift */; };
@@ -16,7 +17,20 @@
 		E5B838FC258DB5CF002476DF /* EditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B838FB258DB5CF002476DF /* EditorModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E515B8E6258DE361004468CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5B838DA258DAE07002476DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5B838E1258DAE07002476DF;
+			remoteInfo = TextEditor;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		E515B8E1258DE361004468CD /* TextEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E515B8E3258DE361004468CD /* TextEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorTests.swift; sourceTree = "<group>"; };
+		E515B8E5258DE361004468CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5B838E2258DAE07002476DF /* TextEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B838E5258DAE07002476DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5B838E7258DAE07002476DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +43,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E515B8DE258DE361004468CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5B838DF258DAE07002476DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,10 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E515B8E2258DE361004468CD /* TextEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				E515B8E3258DE361004468CD /* TextEditorTests.swift */,
+				E515B8E5258DE361004468CD /* Info.plist */,
+			);
+			path = TextEditorTests;
+			sourceTree = "<group>";
+		};
 		E5B838D9258DAE07002476DF = {
 			isa = PBXGroup;
 			children = (
 				E5B838E4258DAE07002476DF /* TextEditor */,
+				E515B8E2258DE361004468CD /* TextEditorTests */,
 				E5B838E3258DAE07002476DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				E5B838E2258DAE07002476DF /* TextEditor.app */,
+				E515B8E1258DE361004468CD /* TextEditorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +105,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E515B8E0258DE361004468CD /* TextEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E515B8EA258DE361004468CD /* Build configuration list for PBXNativeTarget "TextEditorTests" */;
+			buildPhases = (
+				E515B8DD258DE361004468CD /* Sources */,
+				E515B8DE258DE361004468CD /* Frameworks */,
+				E515B8DF258DE361004468CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E515B8E7258DE361004468CD /* PBXTargetDependency */,
+			);
+			name = TextEditorTests;
+			productName = TextEditorTests;
+			productReference = E515B8E1258DE361004468CD /* TextEditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E5B838E1258DAE07002476DF /* TextEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5B838F6258DAE08002476DF /* Build configuration list for PBXNativeTarget "TextEditor" */;
@@ -99,6 +149,10 @@
 				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					E515B8E0258DE361004468CD = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = E5B838E1258DAE07002476DF;
+					};
 					E5B838E1258DAE07002476DF = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -118,11 +172,19 @@
 			projectRoot = "";
 			targets = (
 				E5B838E1258DAE07002476DF /* TextEditor */,
+				E515B8E0258DE361004468CD /* TextEditorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E515B8DF258DE361004468CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5B838E0258DAE07002476DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,6 +198,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E515B8DD258DE361004468CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E515B8E4258DE361004468CD /* TextEditorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5B838DE258DAE07002476DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,6 +218,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E515B8E7258DE361004468CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5B838E1258DAE07002476DF /* TextEditor */;
+			targetProxy = E515B8E6258DE361004468CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E5B838EB258DAE07002476DF /* Main.storyboard */ = {
@@ -169,6 +247,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E515B8E8258DE361004468CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TextEditorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.akio0911.TextEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextEditor.app/TextEditor";
+			};
+			name = Debug;
+		};
+		E515B8E9258DE361004468CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TextEditorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.akio0911.TextEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextEditor.app/TextEditor";
+			};
+			name = Release;
+		};
 		E5B838F4258DAE08002476DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -324,6 +440,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E515B8EA258DE361004468CD /* Build configuration list for PBXNativeTarget "TextEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E515B8E8258DE361004468CD /* Debug */,
+				E515B8E9258DE361004468CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E5B838DD258DAE07002476DF /* Build configuration list for PBXProject "TextEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
