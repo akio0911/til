@@ -33,5 +33,19 @@
         <page name='contains'/>
         <page name='containsWhere'/>
         <page name='tryContainsWhere'/>
+        <page name='allSatisfy'/>
+        <page name='tryAllSatisfy'/>
+        <page name='drop'/>
+        <page name='dropFirst'/>
+        <page name='dropWhile'/>
+        <page name='tryDrop'/>
+        <page name='append'/>
+        <page name='appendSequence'/>
+        <page name='appendPublisher'/>
+        <page name='prepend'/>
+        <page name='prependPublisher'/>
+        <page name='prependSequence'/>
+        <page name='prefix'/>
+        <page name='prefixWhile'/>
     </pages>
 </playground>
