@@ -1,5 +1,9 @@
 import UIKit
 import Combine
+import PlaygroundSupport
+
+PlaygroundPage.current.needsIndefiniteExecution = true
+
 
 // tryPrefix(while:) | Apple Developer Documentation
 // https://developer.apple.com/documentation/combine/publisher/tryprefix(while:)
@@ -312,3 +316,136 @@ func merge8() {
     pubG.send(54)
     pubH.send(1001)
 }
+
+// zip(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/zip(_:)
+func zipP() {
+    let numbersPub = PassthroughSubject<Int, Never>()
+    let lettersPub = PassthroughSubject<String, Never>()
+    
+    let cancellable = numbersPub
+        .zip(lettersPub)
+        .sink(receiveValue: {print($0)})
+    
+    numbersPub.send(1)
+    numbersPub.send(2)
+    lettersPub.send("A")
+    numbersPub.send(3)
+    lettersPub.send("B")
+}
+
+// zip(_:_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/zip(_:_:)-4xn21
+func zipPT() {
+    let numbersPub = PassthroughSubject<Int, Never>()
+    let lettersPub = PassthroughSubject<String, Never>()
+    
+    let cancellable = numbersPub
+        .zip(lettersPub, { anInt, aLetter in
+            String(repeating: aLetter, count: anInt)
+        })
+        .sink(receiveValue: {print($0)})
+    
+    numbersPub.send(1)
+    numbersPub.send(2)
+    numbersPub.send(3)
+    lettersPub.send("A")
+    lettersPub.send("B")
+}
+
+// zip(_:_:_:_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/zip(_:_:_:_:)
+func zipPQRT() {
+    let numbersPub = PassthroughSubject<Int, Never>()
+    let lettersPub = PassthroughSubject<String, Never>()
+    let emojiPub = PassthroughSubject<String, Never>()
+    let fractionsPub = PassthroughSubject<Double, Never>()
+    
+    let cancellable = numbersPub
+        .zip(lettersPub, emojiPub, fractionsPub, { anInt, aLetter, anEmoji, aFraction in
+            ("\(String(repeating: anEmoji, count: anInt)) \(String(repeating: aLetter, count: anInt)) \(aFraction)")
+        })
+        .sink(receiveValue: {print($0)})
+    
+    numbersPub.send(1)
+    numbersPub.send(2)
+    numbersPub.send(3)
+    fractionsPub.send(0.1)
+    lettersPub.send("A")
+    emojiPub.send("😀")
+    lettersPub.send("B")
+    fractionsPub.send(0.8)
+    emojiPub.send("🥰")
+}
+
+// assertNoFailure(_:file:line:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/assertnofailure(_:file:line:)
+func assertNoFailure() {
+    enum SubjectError: Error {
+        case genericSubjectError
+    }
+    
+    let subject = CurrentValueSubject<String, Error>("initial value")
+    subject
+        .assertNoFailure()
+        .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
+    
+    subject.send("second value")
+    subject.send(completion: Subscribers.Completion<Error>.failure(SubjectError.genericSubjectError))
+}
+
+// catch(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/catch(_:)
+func catchHandler() {
+    struct SimpleError: Error {}
+    let numbers = [5,4,3,2,1,0,9,8,7,6]
+    let cancellable = numbers.publisher
+        .tryLast(where: {
+            guard $0 != 0 else { throw SimpleError() }
+            return true
+        })
+        .catch({ error in
+            Just(-1)
+        })
+        .sink(receiveValue: {print($0)})
+}
+
+// tryCatch(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/trycatch(_:)
+func tryCatch() {
+    enum SimpleError: Error { case error }
+    let numbers = [5,4,3,2,1,-1,7,8,9,10]
+    
+    let cancellable = numbers.publisher
+        .tryMap({ v in
+            if v > 0 {
+                return v
+            } else {
+                throw SimpleError.error
+            }
+        })
+        .tryCatch({ error in
+            Just(0)
+        })
+        .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
+}
+
+// retry(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/retry(_:)
+func retry() -> AnyCancellable {
+    struct WebSiteData: Codable {
+        var rawHTML: String
+    }
+    
+    let myURL = URL(string: "https://www.example.comZZZ")
+    return URLSession.shared.dataTaskPublisher(for: myURL!)
+        .retry(3)
+        .map({ page -> WebSiteData in
+            return WebSiteData(rawHTML: String(decoding: page.data, as: UTF8.self))
+        })
+        .catch({ _ in
+            return Just(WebSiteData(rawHTML: "<HTML>Unable to load page - timed out.</HTML>"))
+        })
+        .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
+}
+
