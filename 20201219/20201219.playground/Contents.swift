@@ -449,3 +449,28 @@ func retry() -> AnyCancellable {
         .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
 }
 
+// flatMap(maxPublishers:_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/flatmap(maxpublishers:_:)-3k7z5
+
+func flatMapTP() {
+    struct WeatherStation {
+        let stationID: String
+    }
+    
+    func fetch(station: WeatherStation) -> AnyPublisher<Data, URLError> {
+        Just(Data()).setFailureType(to: URLError.self).eraseToAnyPublisher()
+    }
+    
+    let weatherPublisher = PassthroughSubject<WeatherStation, URLError>()
+    
+    let cancellable = weatherPublisher.flatMap { station -> AnyPublisher<Data, URLError> in
+//        let url = URL(string:"https://weatherapi.example.com/stations/\(station.stationID)/observations/latest")!
+//        return URLSession.shared.dataTaskPublisher(for: url)
+        fetch(station: station)
+    }
+    .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
+    
+    weatherPublisher.send(WeatherStation(stationID: "KSFO"))
+    weatherPublisher.send(WeatherStation(stationID: "EGLC"))
+    weatherPublisher.send(WeatherStation(stationID: "ZBBB"))
+}
