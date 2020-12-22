@@ -474,3 +474,284 @@ func flatMapTP() {
     weatherPublisher.send(WeatherStation(stationID: "EGLC"))
     weatherPublisher.send(WeatherStation(stationID: "ZBBB"))
 }
+
+func switchToLatest() -> Set<AnyCancellable>{
+    var cancellables = Set<AnyCancellable>()
+    let subject = PassthroughSubject<Int, Never>()
+    subject
+        .setFailureType(to: URLError.self)
+        .map({ index -> URLSession.DataTaskPublisher in
+            let url = URL(string: "https://www.google.com?q=\(index)")!
+            return URLSession.shared.dataTaskPublisher(for: url)
+        })
+        .switchToLatest()
+        .sink(receiveCompletion: {print($0)}, receiveValue: {
+                print($0.response.url)
+        })
+        .store(in: &cancellables)
+    
+    (1...5).forEach({ index in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(index*100), execute: {
+            subject.send(index)
+        })
+    })
+    
+    return cancellables
+}
+
+// measureInterval(using:options:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/measureinterval(using:options:)
+
+//let cancellable = Timer.publish(every: 1, on: .main, in: .default)
+//    .autoconnect()
+//    .measureInterval(using: RunLoop.main)
+//    .sink(receiveValue: {print($0)})
+
+
+// debounce(for:scheduler:options:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/debounce(for:scheduler:options:)
+
+//let bounces: [(Int, TimeInterval)] = [
+//    (0, 0),
+//    (1, 0.25),
+//    (2, 1),
+//    (3, 1.25),
+//    (4, 1.5),
+//    (5, 2)
+//]
+//
+//let subject = PassthroughSubject<Int, Never>()
+//let cancellable = subject
+//    .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+//    .sink(receiveValue: {print($0)})
+//
+//bounces.forEach({ bounce in
+//    DispatchQueue.main.asyncAfter(deadline: .now() + bounce.1, execute: {
+//        subject.send(bounce.0)
+//    })
+//})
+
+
+// delay(for:tolerance:scheduler:options:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/delay(for:tolerance:scheduler:options:)
+
+//let df = DateFormatter()
+//df.dateStyle = .none
+//df.timeStyle = .long
+//let cancellable = Timer.publish(every: 1.0, on: .main, in: .default)
+//    .autoconnect()
+//    .handleEvents(receiveOutput: { date in
+//        print("Sending Timestamp: \(df.string(from: date))")
+//    })
+//    .delay(for: .seconds(3), scheduler: RunLoop.main, options: .none)
+//    .sink(receiveCompletion: {print($0)}, receiveValue: {
+//        let now = Date()
+//        print("At: \(df.string(from: now)), Received: \(df.string(from: $0))")
+//    })
+
+
+// throttle(for:scheduler:latest:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/throttle(for:scheduler:latest:)
+
+//let cancellable = Timer.publish(every: 3.0, on: .main, in: .default)
+//    .autoconnect()
+//    .print("\(Date().description)")
+//    .throttle(for: 10.0, scheduler: RunLoop.main, latest: true)
+//    .sink(receiveCompletion: {print($0)}, receiveValue: {
+//        print("Received Timestamp \($0)")
+//    })
+
+
+// timeout(_:scheduler:options:customError:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/timeout(_:scheduler:options:customerror:)
+
+//let WAIT_TIME = 2
+//let TIMEOUT_TIME = 5
+//
+//let subject = PassthroughSubject<String, Never>()
+//let cancellable = subject
+//    .timeout(.seconds(TIMEOUT_TIME), scheduler: DispatchQueue.main, options: nil, customError: nil)
+//    .sink(receiveCompletion: { print($0) }, receiveValue: { print("value: \($0) at \(Date())") })
+//
+//DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(WAIT_TIME), execute: {
+//    subject.send("sent after a delay of \(WAIT_TIME) seconds")
+//})
+
+
+// decode(type:decoder:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/decode(type:decoder:)
+
+//struct Article: Codable {
+//    let title: String
+//    let author: String
+//    let pubDate: Date
+//}
+//
+//let dataProvider = PassthroughSubject<Data, Never>()
+//let cancellable = dataProvider
+//    .decode(type: Article.self, decoder: JSONDecoder())
+//    .sink(receiveCompletion: {print($0)}, receiveValue: {print($0)})
+//
+//dataProvider.send(Data("{\"pubDate\":1574273638.575666, \"title\" : \"My First Article\", \"author\" : \"Gita Kumar\" }".utf8))
+
+
+// encode(encoder:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/encode(encoder:)
+
+//struct Article: Codable {
+//    let title: String
+//    let author: String
+//    let pubDate: Date
+//}
+//
+//let dataProvider = PassthroughSubject<Article, Never>()
+//let cancellable = dataProvider
+//    .encode(encoder: JSONEncoder())
+//    .sink(receiveCompletion: {print($0)}, receiveValue: { data in
+//        guard let string = String(data: data, encoding: .utf8) else { return }
+//        print(data, string)
+//    })
+//
+//dataProvider.send(Article(title: "My First Article", author: "Gita Kumar", pubDate: Date()))
+
+
+// map(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/map(_:)-6sm0a
+
+//struct DiceRoll {
+//    let die: Int
+//}
+//
+//let cancellable = Just(DiceRoll(die: Int.random(in: 1...6)))
+//    .map(\.die)
+//    .sink(receiveValue: {print($0)})
+
+
+// map(_:_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/map(_:_:)
+
+//struct DiceRoll {
+//    let die1: Int
+//    let die2: Int
+//}
+//
+//let cancellable = Just(DiceRoll(die1: Int.random(in: 1...6),
+//                                die2: Int.random(in: 1...6)))
+//    .map(\.die1, \.die2)
+//    .sink(receiveValue: {print($0)})
+
+
+// map(_:_:_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/map(_:_:_:)
+
+//struct DiceRoll {
+//    let die1: Int
+//    let die2: Int
+//    let die3: Int
+//}
+//
+//let cancellable = Just(DiceRoll(die1: Int.random(in: 1...6),
+//                                die2: Int.random(in: 1...6),
+//                                die3: Int.random(in: 1...6)))
+//    .map(\.die1, \.die2, \.die3)
+//    .sink(receiveValue: {print($0)})
+
+
+// multicast(_:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/multicast(_:)
+
+//let pub = ["First", "Second", "Third"].publisher
+//    .map { return ($0, Int.random(in: 0...100)) }
+//    .print("Random")
+//    .multicast({ PassthroughSubject<(String, Int), Never>() })
+//
+//let cancellable1 = pub
+//    .sink { print("1: \($0)") }
+//let cancellable2 = pub
+//    .sink { print("2: \($0)") }
+//pub.connect()
+
+
+// multicast(subject:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/multicast(subject:)
+
+//let pub = ["First", "Second", "Third"].publisher
+//    .map { return ($0, Int.random(in: 0...100)) }
+//    .print("Random")
+//    .multicast(subject: PassthroughSubject<(String, Int), Never>())
+//
+//let cancellable1 = pub.sink(receiveValue: {print($0)})
+//let cancellable2 = pub.sink(receiveValue: {print($0)})
+//pub.connect()
+
+
+// share() | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/share()
+
+//let pub = (1...3).publisher
+//    .delay(for: 1, scheduler: DispatchQueue.main)
+//    .map { _ in return Int.random(in: 0...100) }
+//    .print("Random")
+//    .share()
+//
+//let cancellable1 = pub
+//    .sink(receiveValue: {print("1: \($0)")})
+//
+//let cancellable2 = pub
+//    .sink(receiveValue: {print("2: \($0)")})
+
+
+// buffer(size:prefetch:whenFull:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/buffer(size:prefetch:whenfull:)
+
+
+// eraseToAnyPublisher() | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/erasetoanypublisher()
+
+//class TypeWithSubject {
+//    let publisher = PassthroughSubject<Int,Never>()
+//}
+//
+//class TypeWithErasedSubject {
+//    let publisher = PassthroughSubject<Int,Never>().eraseToAnyPublisher()
+//}
+//
+//let nonErased = TypeWithSubject()
+//if let subject = nonErased.publisher as? PassthroughSubject<Int,Never> {
+//    print("Successfully cast nonErased.publisher.")
+//}
+//let erased = TypeWithErasedSubject()
+//if let subject = erased.publisher as? PassthroughSubject<Int,Never> {
+//    print("Successfully cast erased.publisher.")
+//}
+
+
+// subscribe(on:options:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/subscribe(on:options:)
+
+//let ioPerformingPublisher = (1...10).publisher
+//let uiUpdatingSubscriver = PassthroughSubject<Int, Never>()
+//
+//let cancellable1 = uiUpdatingSubscriver.sink(receiveValue: {print($0)})
+//
+//let cancellable2 = ioPerformingPublisher
+//    .subscribe(on: DispatchQueue.global())
+//    .receive(on: RunLoop.main)
+//    .subscribe(uiUpdatingSubscriver)
+
+// receive(on:options:) | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/receive(on:options:)
+
+//let jsonPublisher = PassthroughSubject<String, Never>()
+//let labelUpdater = PassthroughSubject<String, Never>()
+//
+//let cancellable1 = labelUpdater.sink(receiveValue: {print($0)})
+//
+//let cancellable2 = jsonPublisher
+//    .subscribe(on: DispatchQueue.global())
+//    .receive(on: RunLoop.main)
+//    .subscribe(labelUpdater)
+//
+//jsonPublisher.send("JSON1")
+//jsonPublisher.send("JSON2")
+//jsonPublisher.send("JSON3")
