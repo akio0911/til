@@ -739,6 +739,7 @@ func switchToLatest() -> Set<AnyCancellable>{
 //    .receive(on: RunLoop.main)
 //    .subscribe(uiUpdatingSubscriver)
 
+
 // receive(on:options:) | Apple Developer Documentation
 // https://developer.apple.com/documentation/combine/publisher/receive(on:options:)
 
@@ -755,3 +756,22 @@ func switchToLatest() -> Set<AnyCancellable>{
 //jsonPublisher.send("JSON1")
 //jsonPublisher.send("JSON2")
 //jsonPublisher.send("JSON3")
+
+
+// makeConnectable() | Apple Developer Documentation
+// https://developer.apple.com/documentation/combine/publisher/makeconnectable()
+
+//let subject = Just<String>("Sent")
+//let pub = subject
+//    .share()
+//    .makeConnectable()
+//let cancellable1 = pub.sink { print("1: \($0)") }
+//
+//var cancellable2: AnyCancellable!
+//DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//    cancellable2 = pub.sink { print("2: \($0)") }
+//})
+//var connectable: Any!
+//DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//    connectable = pub.connect()
+//})
